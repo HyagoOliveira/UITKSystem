@@ -15,11 +15,9 @@ namespace ActionCode.UISystem
     /// </summary>
     public sealed class TabScreen : AbstractMenuScreen
     {
-        [Header("Tab")]
+        [Header("Tabs")]
         [Tooltip("The name used to find the TabView element.")]
         public string tabViewName;
-        [Tooltip("The first tab to activated when start.")]
-        public AbstractTab firstTab;
         [Tooltip("If enabled, moving tab will warp from the other side when reaching the end.")]
         public bool isWarpAllowed = true;
 
@@ -71,12 +69,6 @@ namespace ActionCode.UISystem
         /// </summary>
         public event Action<AbstractTab> OnTabChanged;
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            Focus();
-        }
-
         public override void Initialize(MenuController menu)
         {
             base.Initialize(menu);
@@ -86,7 +78,7 @@ namespace ActionCode.UISystem
         public override void Focus()
         {
             TabView.Focus();
-            if (firstTab) firstTab.Focus();
+            TryFocusActiveTab();
         }
 
         /// <summary>
@@ -120,6 +112,7 @@ namespace ActionCode.UISystem
             TabView = Find<TabView>(tabViewName);
             InitializeTabs();
             InputAction.Enable();
+            Focus();
         }
 
         protected override void SubscribeEvents()
@@ -169,8 +162,21 @@ namespace ActionCode.UISystem
             if (tab.TryGetFirstInput(out var input))
                 Menu.FocusPlayer.FocusWithoutSound(input);
 
+            TryFocus(current);
             PlaySelectionSound();
             OnTabChanged?.Invoke(tab);
+        }
+
+        private void TryFocusActiveTab()
+        {
+            if (TabView?.activeTab != null)
+                TryFocus(TabView.activeTab);
+        }
+
+        private void TryFocus(Tab tab)
+        {
+            var hasTab = Tabs.TryGetValue(tab, out var currentTab);
+            if (hasTab) currentTab.Focus();
         }
     }
 }

@@ -17,15 +17,14 @@ namespace ActionCode.UISystem
 
         public bool IsEnabled => gameObject.activeInHierarchy;
 
-        private void OnEnable()
+        private void OnDisable() => UnsubscribeEvents();
+
+        public void Initialize(Tab tab)
         {
+            Tab = tab;
             FindReferences();
             SubscribeEvents();
         }
-
-        private void OnDisable() => UnsubscribeEvents();
-
-        public void Initialize(Tab tab) => Tab = tab;
 
         public virtual string GetName() => GetType().Name;
         public T Find<T>(string name) where T : VisualElement => Tab.Find<T>(name);
