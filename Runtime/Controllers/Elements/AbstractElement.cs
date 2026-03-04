@@ -9,7 +9,7 @@ namespace ActionCode.UISystem
     {
         private readonly List<UQueryBuilder<T>> builders = new(10);
 
-        public void Initialize(VisualElement root)
+        public virtual void Initialize(VisualElement root)
         {
             builders.Clear();
 
@@ -22,7 +22,7 @@ namespace ActionCode.UISystem
             }
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             foreach (var builder in builders)
             {

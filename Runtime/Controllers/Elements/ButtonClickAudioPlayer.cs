@@ -16,11 +16,12 @@ namespace ActionCode.UISystem
         private MenuData data;
 
         public MenuData Data => data;
+        public AudioSource Audio => source;
 
         private void Reset() => source = GetComponent<AudioSource>();
 
-        public void PlaySubmitSound() => source.PlayOneShot(Data.submit);
-        public void PlayCancelSound() => source.PlayOneShot(Data.cancel);
+        public void PlaySubmitSound() => Audio.PlayOneShot(Data.submit);
+        public void PlayCancelSound() => Audio.PlayOneShot(Data.cancel);
 
         public async Awaitable WaitSubmitSoundAsync() => await Awaitable.WaitForSecondsAsync(Data.submit.length);
         public async Awaitable WaitCancelSoundAsync() => await Awaitable.WaitForSecondsAsync(Data.cancel.length);
