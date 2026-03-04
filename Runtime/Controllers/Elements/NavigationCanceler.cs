@@ -21,11 +21,6 @@ namespace ActionCode.UISystem
 
         protected override void RegisterEvent(VisualElement e) => e.RegisterCallback<NavigationCancelEvent>(HandleNavigationCancel);
         protected override void UnregisterEvent(VisualElement e) => e?.UnregisterCallback<NavigationCancelEvent>(HandleNavigationCancel);
-
-        private void HandleNavigationCancel(NavigationCancelEvent _)
-        {
-            OnCanceled?.Invoke();
-            gameObject.SetActive(false);
-        }
+        private void HandleNavigationCancel(NavigationCancelEvent _) => OnCanceled?.Invoke();
     }
 }
