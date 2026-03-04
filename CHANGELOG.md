@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - NavigationCanceler component
 
+### Changed
+- Improve Tabs
+
 ## [0.6.0] - 2026-02-26
 ### Changed
 - Improve TabScreen Focus

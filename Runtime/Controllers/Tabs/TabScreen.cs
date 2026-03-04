@@ -13,13 +13,13 @@ namespace ActionCode.UISystem
     /// You can move between tabs using UI Buttons or the Gamepad.
     /// </para>
     /// </summary>
-    public sealed class TabScreen : AbstractMenuScreen
+    public sealed class TabScreen : AbstractController
     {
         [Header("Tabs")]
-        [Tooltip("The name used to find the TabView element.")]
-        public string tabViewName;
         [Tooltip("If enabled, moving tab will warp from the other side when reaching the end.")]
         public bool isWarpAllowed = true;
+        [Tooltip("The name used to find the TabView element.")]
+        public string tabViewName;
 
         [Header("Audio")]
         [SerializeField, Tooltip("The Global Menu Data.")]
@@ -59,6 +59,11 @@ namespace ActionCode.UISystem
         /// </summary>
         public TabView TabView { get; private set; }
 
+        public ElementHighlighter Highlighter { get; private set; }
+        public ElementFocusAudioPlayer FocusPlayer { get; private set; }
+        public ButtonClickAudioPlayer ButtonClickPlayer { get; private set; }
+        public NavigationCanceler NavigationCanceler { get; private set; }
+
         /// <summary>
         /// All available Tabs in this screen, indexed by their Tab element.
         /// </summary>
@@ -69,16 +74,25 @@ namespace ActionCode.UISystem
         /// </summary>
         public event Action<AbstractTab> OnTabChanged;
 
-        public override void Initialize(MenuController menu)
-        {
-            base.Initialize(menu);
-            InputAction = input.FindAction(inputAction.GetPath());
-        }
+        private void Awake() => FindComponents();
 
         public override void Focus()
         {
             TabView.Focus();
             TryFocusActiveTab();
+        }
+
+        /// <summary>
+        /// Opens the Tab Screen using the given tab name.
+        /// </summary>
+        /// <param name="tabName">The Tab element name in the TabView.</param>
+        public void Open(string tabName)
+        {
+            if (!IsEnabled) Activate();
+
+            var tab = TabView.Query<Tab>(tabName).First();
+            var index = TabView.IndexOf(tab);
+            CurrentTabIndex = index;
         }
 
         /// <summary>
@@ -103,32 +117,42 @@ namespace ActionCode.UISystem
 
         public void MoveRight() => Move(1);
         public void MoveLeft() => Move(-1);
-        public void PlaySelectionSound() => Menu.Audio.PlayOneShot(data.selectTab);
+        public void PlaySelectionSound() => ButtonClickPlayer.Audio.PlayOneShot(data.selectTab);
 
         protected override void FindReferences()
         {
             base.FindReferences();
-
             TabView = Find<TabView>(tabViewName);
+
             InitializeTabs();
-            InputAction.Enable();
             Focus();
         }
 
         protected override void SubscribeEvents()
         {
             base.SubscribeEvents();
-
             TabView.activeTabChanged += HandleActiveTabChanged;
             InputAction.performed += HandleInputActionPerformed;
+
+            InputAction.Enable();
         }
 
         protected override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
-
             TabView.activeTabChanged -= HandleActiveTabChanged;
             InputAction.performed -= HandleInputActionPerformed;
+
+            InputAction.Disable();
+        }
+
+        private void FindComponents()
+        {
+            InputAction = input.FindAction(inputAction.GetPath());
+            Highlighter = GetComponentInParent<ElementHighlighter>();
+            FocusPlayer = GetComponentInParent<ElementFocusAudioPlayer>();
+            ButtonClickPlayer = GetComponentInParent<ButtonClickAudioPlayer>();
+            NavigationCanceler = GetComponentInParent<NavigationCanceler>();
         }
 
         private int GetWarpedIndex(int index) => index < 0 ? Tabs.Count - 1 : 0;
@@ -159,11 +183,11 @@ namespace ActionCode.UISystem
         {
             var tab = Tabs[current];
 
-            if (tab.TryGetFirstInput(out var input))
-                Menu.FocusPlayer.FocusWithoutSound(input);
-
+            DisposeElements();
+            InitializeElements();
             TryFocus(current);
             PlaySelectionSound();
+
             OnTabChanged?.Invoke(tab);
         }
 
@@ -177,6 +201,23 @@ namespace ActionCode.UISystem
         {
             var hasTab = Tabs.TryGetValue(tab, out var currentTab);
             if (hasTab) currentTab.Focus();
+        }
+
+        private void InitializeElements()
+        {
+            var tab = TabView.activeTab;
+            Highlighter.Initialize(tab);
+            FocusPlayer.Initialize(tab);
+            ButtonClickPlayer.Initialize(tab);
+            NavigationCanceler.Initialize(tab);
+        }
+
+        private void DisposeElements()
+        {
+            Highlighter.Dispose();
+            FocusPlayer.Dispose();
+            ButtonClickPlayer.Dispose();
+            NavigationCanceler.Dispose();
         }
     }
 }

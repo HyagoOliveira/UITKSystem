@@ -31,6 +31,12 @@ namespace ActionCode.UISystem
 
         public bool TryGetFirstInput(out VisualElement input)
         {
+            if (string.IsNullOrEmpty(firstInput))
+            {
+                input = null;
+                return false;
+            }
+
             input = Find<VisualElement>(firstInput);
             return input != null;
         }
