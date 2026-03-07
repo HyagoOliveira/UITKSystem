@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     /// <summary>
     /// Global data container to be used for multiple Menus.

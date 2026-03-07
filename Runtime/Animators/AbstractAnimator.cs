@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     /// <summary>
     /// Abstract animator component for a Visual Elements.

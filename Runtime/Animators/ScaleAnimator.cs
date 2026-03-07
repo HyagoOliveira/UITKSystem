@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     /// <summary>
     /// Scale animator for a Visual Elements.

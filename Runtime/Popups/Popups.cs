@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 using ActionCode.AwaitableSystem;
 using ActionCode.ScreenFadeSystem;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     /// <summary>
     /// Data holder for all Global Popups.

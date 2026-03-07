@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using ActionCode.AwaitableSystem;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     /// <summary>
     /// Abstract controller for a Pause Menu Screen, with buttons: Continue, Main Menu and Quit.

@@ -1,6 +1,6 @@
 {
-  "name": "com.actioncode.ui-system",
-  "displayName": "ActionCode-UI System",
+  "name": "com.actioncode.uitk-system",
+  "displayName": "ActionCode-UITK System",
   "version": "0.7.0",
   "unity": "6000.1",
   "description": "Extension for Unity UI Toolkit System.",
@@ -18,13 +18,13 @@
     "com.unity.modules.uielements": "1.0.0"
   },
   "license": "MIT",
-  "homepage": "https://github.com/HyagoOliveira/UISystem#readme",
+  "homepage": "https://github.com/HyagoOliveira/UITKSystem#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HyagoOliveira/UISystem.git"
+    "url": "https://github.com/HyagoOliveira/UITKSystem.git"
   },
-  "documentationUrl": "https://github.com/HyagoOliveira/UISystem#readme",
-  "changelogUrl": "https://github.com/HyagoOliveira/UISystem/CHANGELOG.md",
+  "documentationUrl": "https://github.com/HyagoOliveira/UITKSystem#readme",
+  "changelogUrl": "https://github.com/HyagoOliveira/UITKSystem/CHANGELOG.md",
   "author": {
     "name": "Hyago Oliveira",
     "email": "hyagogow@gmail.com"

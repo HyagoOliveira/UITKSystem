@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     public abstract class AbstractElement<T> : MonoBehaviour, IDisposable where T : VisualElement
     {

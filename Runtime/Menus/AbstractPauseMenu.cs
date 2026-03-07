@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     /// <summary>
     /// Abstract class for a Pause Menu, using a <see cref="AbstractPauseScreen"/> implementation.

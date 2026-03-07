@@ -53,11 +53,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gitignore
 - Initial commit
 
-[Unreleased]: https://github.com/HyagoOliveira/UISystem/compare/0.7.0...main
-[0.7.0]: https://github.com/HyagoOliveira/UISystem/tree/0.7.0/
-[0.6.0]: https://github.com/HyagoOliveira/UISystem/tree/0.6.0/
-[0.5.0]: https://github.com/HyagoOliveira/UISystem/tree/0.5.0/
-[0.4.0]: https://github.com/HyagoOliveira/UISystem/tree/0.4.0/
-[0.3.0]: https://github.com/HyagoOliveira/UISystem/tree/0.3.0/
-[0.2.0]: https://github.com/HyagoOliveira/UISystem/tree/0.2.0/
-[0.1.0]: https://github.com/HyagoOliveira/UISystem/tree/0.1.0/
+[Unreleased]: https://github.com/HyagoOliveira/UITKSystem/compare/0.7.0...main
+[0.7.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.7.0/
+[0.6.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.6.0/
+[0.5.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.5.0/
+[0.4.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.4.0/
+[0.3.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.3.0/
+[0.2.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.2.0/
+[0.1.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.1.0/

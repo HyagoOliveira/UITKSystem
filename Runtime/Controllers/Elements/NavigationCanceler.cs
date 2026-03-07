@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ActionCode.UISystem
+namespace ActionCode.UITKSystem
 {
     [DisallowMultipleComponent]
     public sealed class NavigationCanceler : AbstractElement<VisualElement>
