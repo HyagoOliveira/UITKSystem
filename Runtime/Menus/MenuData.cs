@@ -5,7 +5,7 @@ namespace ActionCode.UITKSystem
     /// <summary>
     /// Global data container to be used for multiple Menus.
     /// </summary>
-    [CreateAssetMenu(fileName = "MenuData", menuName = "ActionCode/UI System/Menu Data", order = 110)]
+    [CreateAssetMenu(fileName = "MenuData", menuName = "ActionCode/UITK System/Menu Data", order = 110)]
     public class MenuData : ScriptableObject
     {
         [Header("Menus")]
