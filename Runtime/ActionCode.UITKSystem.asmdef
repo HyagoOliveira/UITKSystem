@@ -1,6 +1,6 @@
 {
-    "name": "ActionCode.UISystem",
-    "rootNamespace": "ActionCode.UISystem",
+    "name": "ActionCode.UITKSystem",
+    "rootNamespace": "ActionCode.UITKSystem",
     "references": [
         "GUID:2055e4f86e8d13344b9d599457150310",
         "GUID:9c28ae16f2bf6054f89167354241a994",
