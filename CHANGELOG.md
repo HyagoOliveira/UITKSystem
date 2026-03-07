@@ -6,45 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.7.0] - 2026-03-04
+## [0.1.0] - 2026-03-07
 ### Added
-- NavigationCanceler component
-
-### Changed
-- Improve Tabs
-
-## [0.6.0] - 2026-02-26
-### Changed
-- Improve TabScreen Focus
-
-## [0.5.0] - 2025-12-01
-### Fixed
-- Tab issues
-
-## [0.4.0] - 2025-10-19
-### Changed
-- VisualElement Function Extensions
-- Disable UI Navigation when quitting the game or loading a new Scene
-
-## [0.3.0] - 2025-10-06
-### Added
-- MenuController
-- LocalizedString
-- Confirmation Popup
-- Dialogue Popup
-- UITK simple animators
-- ActionCode.ScreenFadeSystem package dependency
-
-## [0.2.0] - 2025-05-04
-### Added
-- TabScreen
-- OpacityAnimator
-- InputEventSystem prefab
-- NotoSans Normal, JP and TMP/UITK Fonts
-- Unity UI (uGUI) 2.0.0 dependency
-
-## [0.1.0] - 2025-04-12
-### Added
+- Porting UI System
 - Initial scripts
 - CHANGELOG
 - Package file
@@ -53,11 +17,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gitignore
 - Initial commit
 
-[Unreleased]: https://github.com/HyagoOliveira/UITKSystem/compare/0.7.0...main
-[0.7.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.7.0/
-[0.6.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.6.0/
-[0.5.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.5.0/
-[0.4.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.4.0/
-[0.3.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.3.0/
-[0.2.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.2.0/
+[Unreleased]: https://github.com/HyagoOliveira/UITKSystem/compare/0.1.0...main
 [0.1.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.1.0/

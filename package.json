@@ -1,7 +1,7 @@
 {
   "name": "com.actioncode.uitk-system",
   "displayName": "ActionCode-UITK System",
-  "version": "0.7.0",
+  "version": "0.1.0",
   "unity": "6000.1",
   "description": "Extension for Unity UI Toolkit System.",
   "keywords": [
