@@ -5,28 +5,6 @@
 * Current version: **0.1.0**
 * License: **MIT**
 
-## Summary
-
-Create Menus and Popups faster using Unity UI Toolkit.
-
-## Custom Runtime Theme
-
-This package has a custom Theme Style Sheet called [ActionCode-UITKSystem](/Settings/Themes/ActionCode-UITKSystem.tss), overriding some classes styles by using the [ActionCode-Global](/Settings/StyleSheets/ActionCode-Global.uss) style sheet.
-
-When using UI Builder, you can select this theme on the Viewport:
-
-![ActionCode UI System Theme](/Docs~/ActionCodeUITKSystem.png)
-
-To see it in runtime on your UI Document component, make sure to use a Panel Settings with this Theme Style Sheet set.
-
-## UI Background Click Disabler
-
-Normally, when interacting with an UI Document, if you click outside a Visual Element, the last selected element is disabled. This is not good for UI in games.
-
-To disable this behavior, put the prefab [InputEventSystem](/Prefabs/Inputs/InputEventSystem.prefab) into your current/dependency scene. This prefab contains all the Input Components necessary to run your UI input correctly, with `InputSystemUIInputModule.DeselectOnBackgroundClick` disabled.
-
->Note: in order to really disable deselection on background clicks, always set the Picking Mode to Ignore (instead of the default Position) inside every background Visual Element your mouse can click in outside selectable elements.
-
 ## Extensions
 
 There are some usefull extensions you can use on the [Extensions Folder](/Runtime/Extensions/).
@@ -41,129 +19,9 @@ var label = root.Find<Label>(name: "MyText"); // Finds a Label with 'MyText' nam
 
 label.SetDisplayEnabled(true); // Sets whether the element should be displayed in the layout.
 label.SetSelectableEnabled(false); // Sets whether the element can be selected.
-label.UpdateLocalization(tableId: "MyLocTable", entryId: "MyLocId"); // Updates the localization binding using the given table and entry IDs (need Unity Localization package).
 
 if (label.IsFocused()) { } // Check whether the element is currently focused.
 ```
-
-## Popups
-
-All available Popups are ready for normal or localized texts, also using show/close animations.
-
-You can use any available Popup from this package by using the [Popups](/Prefabs/Popups/Popups.prefab) prefab.
-This prefab contains all Popups ready to use. You just need to put this prefab inside your current/dependency Scene and use the [Popups](/Runtime/Popups/Popups.cs) component on your code (examples in the next sections).
-
-Alternatively, you can create your own Popup prefabs, place them inside a your Popups global prefab and use them in your projects.
-
-The next section shows how to use any available popup.
-
-### Dialogue Popup
-
-This Popup has a message, an optional title and a Confirm and Cancel buttons, with optional callbacks to each button action.
-
-![Dialogue Popup](/Docs~/DialoguePopup.png)
-
-You can use the default [DialoguePopup](/Prefabs/Popups/Dialogue/DialoguePopup.prefab) implementation found in this package or create your own using the [DialoguePopup](/Runtime/Popups/DialoguePopup.cs) component.
-
-You can show the dialogue as follow:
-
-```csharp
-private void ShowQuitGameDialogue()
-{
-    Popups.Dialogue.Show(
-        message: "Are you sure?",
-        title: "Quitting the game",
-        onConfirm: QuitGame,    // Action to execute when confirming the quit
-        onCancel: GoToMainMenu  // Action to execute when canceling the quit
-    );
-}
-
-private void ShowLocalizedQuitGameDialogue()
-{
-    Popups.Dialogue.Show(
-        tableId: "LoadMenu",            // A localization Table with this name must exist in the project.
-        messageId: "confirm_message",   // The message id inside the localization table.
-        titleId: "delete_title",        // The title id inside the localization table.
-        onConfirm: QuitGame,
-        onCancel: GoToMainMenu
-    );
-}
-```
-
->Note: For the above example, a [Popups](/Runtime/Popups/Popups.cs) instance should be instantiated into your current/dependency Scene.
-
-### Confirmation Popup
-
-Similar to Dialogue Popup but with only a Confirmation button.
-
-![Confirmation Popup](/Docs~/ConfirmationPopup.png)
-
-You can show the confirmation dialog as follow:
-
-```csharp
-private void ShowSaveGameConfirmationDialogue()
-{
-    Popups.Confirmation.Show(
-        message: "Your game was saved!",
-        title: "Save Game"
-    );
-}
-```
-
-Use it to show important confirmation messages to the player.
-
->Note: You can close the any Popup by using the its own Cancel button or the Navigation Cancel from the Keyboard (usually the Esc button) or Gamepad (usually the East button).
-
-### Using other Popups
-
-To show your own Popups, use the function `Popups.GetPopup<YourPopupType>()`. Don't forget to add the Popup prefab as a child of your Popups prefab.
-
-## Localization
-
-You can show localized texts by using the [LocalizedString](/Runtime/Localization/LocalizedString.cs) struct.
-
-```csharp
-var label = root.Find<Label>(name: "PressAnyButtonLabel");
-var localization = new LocalizedString(
-    tableId: "MainMenu",            // The Table Id where the entry is located.
-    entryId: "press_any_button",    // The Entry Id to be localized.
-    fallback: "Press any button"    // The fallback text to be used when an available localization is not found.
-);
-
-label.UpdateLocalization(localization); // Updates the localization here.
-```
-
-You can also show in any Dialogue:
-
-```csharp
-public static void ShowWebGLQuitConfirmation()
-{
-    Popups.Confirmation.Show(
-        message: new LocalizedString("Popups", "webgl_quit_message", "You must close your browser manually!"),
-        title: new LocalizedString("Popups", "webgl_quit_title", "Quitting the Browser")
-    );
-}
-```
-
-## Menus
-
-A Menu is a Finite State Machine containing several Screens, keeping the data about the Current and Last Screen.
-Only one Screen can be activated at time, navigating between then. From an activated Screen, you can go back to the last one using the Cancel input (back button).
-
-Use the [MenuController](/Runtime/Menus/MenuController.cs) component and others to increase the menu creation process.
-
-Bellow are some common examples:
-
-### Main Menu
-
-![Main Menu](/Docs~/MainMenu.png)
-![Any Button Screen](/Docs~/AnyButtonScreen.png)
-![Main Menu Screen](/Docs~/MainMenuScreen.png)
-
-### Pause Menu
-
-![Pause Menu](/Docs~/PauseMenu.png)
-![Pause Menu Screen](/Docs~/PauseMenuScreen.png)
 
 ## Installation
 
@@ -181,7 +39,7 @@ You will need a **Git client** installed on your computer with the Path variable
 - You can also manually modify you `Packages/manifest.json` file and add this line inside `dependencies` attribute: 
 
 ```json
-"com.actioncode.ui-system":"https://github.com/HyagoOliveira/UITKSystem.git"
+"com.actioncode.uitk-system":"https://github.com/HyagoOliveira/UITKSystem.git"
 ```
 
 ---
