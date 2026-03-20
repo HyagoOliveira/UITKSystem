@@ -6,8 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fix
-- Rename asdef
+## [1.0.0] - 2026-03-20
+### Added
+- UI Toolki extensions
 
 ## [0.1.0] - 2026-03-07
 ### Added
@@ -20,5 +21,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gitignore
 - Initial commit
 
-[Unreleased]: https://github.com/HyagoOliveira/UITKSystem/compare/0.1.0...main
-[0.1.0]: https://github.com/HyagoOliveira/UITKSystem/tree/0.1.0/
+[Unreleased]: https://github.com/HyagoOliveira/UITKSystem/compare/1.0.0...main
+[1.0.0]: https://github.com/HyagoOliveira/UITKSystem/tree/1.0.0/
