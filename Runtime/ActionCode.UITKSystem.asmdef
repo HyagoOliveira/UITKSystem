@@ -1,16 +1,7 @@
 {
     "name": "ActionCode.UITKSystem",
     "rootNamespace": "ActionCode.UITKSystem",
-    "references": [
-        "GUID:2055e4f86e8d13344b9d599457150310",
-        "GUID:9c28ae16f2bf6054f89167354241a994",
-        "GUID:f9c69359d19c33d4cbe17e792e0a5df5",
-        "GUID:b6d604d366204e3498891d6d6ba5936e",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:eec0964c48f6f4e40bc3ec2257ccf8c5",
-        "GUID:84651a3751eca9349aac36a66bba901b",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -20,12 +11,6 @@
     ],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.unity.localization",
-            "expression": "1.0.0",
-            "define": "UNITY_LOCALIZATION"
-        }
-    ],
+    "versionDefines": [],
     "noEngineReferences": false
 }

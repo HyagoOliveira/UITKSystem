@@ -13,9 +13,6 @@ namespace ActionCode.UITKSystem
     [DisallowMultipleComponent]
     public sealed class ListController : AbstractController
     {
-        [Tooltip("The Global Menu Data.")]
-        public MenuData data;
-
         [Space]
         [Tooltip("The ListView name inside the UI Document.")]
         public string listName;
@@ -65,20 +62,11 @@ namespace ActionCode.UITKSystem
         public AudioSource Audio { get; private set; }
 
         /// <summary>
-        /// The optional Menu Controller this List belongs to.
-        /// </summary>
-        public MenuController Menu { get; private set; }
-
-        /// <summary>
         /// The last selected index.
         /// </summary>
         public int LastSelectedIndex { get; private set; } = -1;
 
-        private void Awake()
-        {
-            Audio = GetComponentInParent<AudioSource>();
-            Menu = GetComponentInParent<MenuController>();
-        }
+        private void Awake() => Audio = GetComponentInParent<AudioSource>();
 
         /// <summary>
         /// Whether the List has any item.
@@ -124,8 +112,6 @@ namespace ActionCode.UITKSystem
             List.bindItem += HandleItemBinded;
             List.itemsChosen += HandleItemsChosen; // Necessary to invoke Gamepad submit event
             List.selectionChanged += HandleSelectionChanged;
-
-            Scroll.contentContainer.RegisterCallback<NavigationCancelEvent>(HandleNavigationCancelEvent);
         }
 
         protected override void UnsubscribeEvents()
@@ -136,8 +122,6 @@ namespace ActionCode.UITKSystem
             List.bindItem -= HandleItemBinded;
             List.itemsChosen -= HandleItemsChosen;
             List.selectionChanged -= HandleSelectionChanged;
-
-            Scroll.contentContainer.UnregisterCallback<NavigationCancelEvent>(HandleNavigationCancelEvent);
         }
 
         private VisualElement HandleItemMaked() => new Label();
@@ -161,15 +145,6 @@ namespace ActionCode.UITKSystem
         private void HandleSelectionChanged(IEnumerable _) => SelectItem();
         private void HandleItemsChosen(IEnumerable<object> _) => ConfirmItem();
 
-        private void HandleNavigationCancelEvent(NavigationCancelEvent evt)
-        {
-            if (Menu == null) return;
-
-            evt.StopPropagation();
-            MenuController.SetSendNavigationEvents(false);
-            Menu.OnCancel();
-        }
-
         private void SelectItem()
         {
             var item = List.selectedItem;
@@ -185,7 +160,6 @@ namespace ActionCode.UITKSystem
             if (wasSame) return;
 
             LastSelectedIndex = List.selectedIndex;
-            PlaySelectionSound();
             OnItemSelected?.Invoke(item);
         }
 
@@ -194,11 +168,7 @@ namespace ActionCode.UITKSystem
             var item = List.selectedItem;
             if (item == null) return;
 
-            PlayConfirmSound();
             OnItemConfirmed?.Invoke(item);
         }
-
-        private void PlayConfirmSound() => Audio.PlayOneShot(data.submit);
-        private void PlaySelectionSound() => Audio.PlayOneShot(data.selection);
     }
 }
